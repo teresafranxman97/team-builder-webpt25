@@ -6,7 +6,8 @@ import data from './data';
 
 
 function App() {
-  const [ users, setUsers ] = useState(data)
+  const [ users, setUsers ] = useState(data);
+  const [ memberToEdit, setMememberToEdit ] = useState("");
   
   return (
     <div className="App">
