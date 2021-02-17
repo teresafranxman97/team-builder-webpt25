@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 function Form(props) {
-    const [ form, setForm ] = useState("")
-
+    const { form, update, submit} = props
+ 
+    //////////////// HANDLERS /////////////
    const handleSubmit = event => {
        event.preventDefault()
-       console.log(event.target)
+       submit()
    }
 
    const handleChange = event => {
-    // form.name = event.target.value; DO NOT DO THIS, NEVER MODIFY STATE DIRECTLY
-    // console.log(event.target.value);
-    // setForm({name: event.target.value}) THIS DOES NOT WORK EITHER
-        setForm({...form, [event.target.name]: event.target.value});
+        // setForm({...form, [event.target.name]: event.target.value})
+        const {name, value} = event.target;
+        update(name, value);
    }
-
-   
 
    return (
        <form onSubmit={handleSubmit} onChange={handleChange}>
@@ -25,6 +23,7 @@ function Form(props) {
                 <input 
                    type="text"
                    name="name"
+                   value={form.name}
                    placeholder="type a name"
                    onChange={handleChange}
                 />
@@ -34,25 +33,25 @@ function Form(props) {
                 <input 
                     type="email"
                     name="email"
+                    value={form.email}
                     placeholder="type an email"
                     onChange={handleChange}
                 />
             </label>
             <label>
                 Role
-                <select name="role"  onChange={handleChange}>
-                    <option>--Select A Role--</option>
-                    <option>Backend Engineer</option>
-                    <option>Frontend Engineer</option> 
-                    <option>Designer</option>
-                    <option>Fullstack Developer</option>
-                    <option>Mobile Application Developer</option>
-                    <option>Game Developer</option>
-                    <option>Data Scientist</option> 
+                <select name="role"  onChange={handleChange} value={form.role} >
+                    <option value="">--Select A Role--</option>
+                    <option value="Backend Engineer">Backend Engineer</option>
+                    <option value="Frontend Engineer">Frontend Engineer</option> 
+                    <option value="Designer">Designer</option>
+                    <option value="Fullstack Developer">Fullstack Developer</option>
+                    <option value="Mobile Application Developer">Mobile Application Developer</option>
+                    <option value="Game Developer">Game Developer</option>
+                    <option value="Data Scientist">Data Scientist</option> 
                 </select>
             </label>
         </div>
-
         <div className="submit">
             <button>Submit</button>
         </div>
@@ -60,4 +59,8 @@ function Form(props) {
    ) 
 }
 
+
+
+
 export default Form;
+
