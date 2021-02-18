@@ -1,9 +1,34 @@
 import React from 'react';
+import styled from 'styled-components';
+
+
+const Styled =  styled.div `
+   
+    label {
+        padding: 5%;
+        display: flex;
+        justify-content: center;
+        flex-flow: row-nowrap;
+        font-size: 30px;
+        color: gray;
+    }
+
+    input {
+        margin-left: 1em;
+        padding: 1%;
+        border-radius: 20px;
+    }
+
+    select {
+        margin-left: 1em;
+    }
+
+`
 
 function Form(props) {
     const { form, update, submit} = props
  
-    //////////////// HANDLERS /////////////
+//////////////// HANDLERS /////////////
    const handleSubmit = event => {
        event.preventDefault()
        submit()
@@ -16,6 +41,7 @@ function Form(props) {
    }
 
    return (
+     <Styled> 
        <form onSubmit={handleSubmit} onChange={handleChange}>
         <div className="form-group-inputs">
             <label>
@@ -56,6 +82,7 @@ function Form(props) {
             <button>Submit</button>
         </div>
        </form>
+     </Styled>  
    ) 
 }
 

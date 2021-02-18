@@ -1,8 +1,19 @@
 import './App.css';
 import React, { useState } from 'react';
-
+import styled from 'styled-components';
 
 import Form from './Components/Form';
+// import User from './Components/User';
+// import User from './Components/User';
+
+const Styles = styled.div `
+  padding: 2em;
+
+  h1 {
+    font-size: 45px;
+    color: navy;
+  }
+`
 
 const initialForm = {
   name: "",
@@ -11,7 +22,13 @@ const initialForm = {
 }
 
 function App() {
-  const [ users, setUsers ] = useState([]);
+  const [ users, setUsers ] = useState([
+    { id: 0, name:'Jenny', email: 'jenny2@ex.com', role: 'Designer' },
+    { id: 1, name: 'Robert', email: 'robot123@ex.com', role: 'Data Scientist' },
+    { id: 2, name: 'Joe', email: 'joe@ex.com', role: 'Frontend Engineer' }
+  ]);
+  // console.log(users)
+
   const [ form, setForm ] = useState(initialForm);      
 
   const submit = () => {
@@ -24,22 +41,12 @@ function App() {
   }
                                                                      
   return (
-    <div className="App">
-      <h1>Join The Team!</h1>
-
-      <Form form={form} update={update} submit={submit} />
-      {/* <div className="user-container">
-        {users.map(user => {
-          return (
-            <div className="user-content">
-              <h1> {user.name} </h1> 
-              <p> {user.email} </p>
-              <p> {user.role} </p>
-            </div>
-          )
-        })}
-      </div> */}
-    </div>
+    <Styles>
+      <div className="App">
+        <h1>Join The Team!</h1>
+        <Form form={form} update={update} submit={submit} />
+      </div>
+    </Styles>
   );
 }
 
